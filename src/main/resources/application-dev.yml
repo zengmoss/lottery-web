@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://10.50.115.114:16052/swisse?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+    username: swisse
+    password: swisse
+    initialSize: 10
+    minIdle: 10
+    maxActive: 20
+    maxWait: 60000
+    useUnfairLock: true
+    timeBetweenEvictionRunsMillis: 9000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    removeAbandoned: true
+    removeAbandonedTimeout: 1200000
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,slf4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+# pagehelper分页插件
+pagehelper:
+  # 数据库的方言
+  helperDialect: mysql
+  # 启用合理化，如果pageNum < 1会查询第一页，如果pageNum > pages会查询最后一页
+  reasonable: true

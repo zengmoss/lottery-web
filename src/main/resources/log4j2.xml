@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <Configuration status="WARN" packages="com.mama100.lotteryweb.config">
+   <Appenders>
+     <Console name="Console" target="SYSTEM_OUT">
+       <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} %sx{MC} - %msg%n"/>
+     </Console>
+   </Appenders>
+   <Loggers>
+
+    <!--<Logger name="org.springframework.web.servlet.DispatcherServlet" level="debug" additivity="true">
+        <appender-ref ref="console" />
+    </Logger>-->
+     <Root level="info">
+       <AppenderRef ref="Console"/>
+     </Root>
+   </Loggers>
+ </Configuration>
