@@ -21,6 +21,18 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     filters: stat,wall,slf4j
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  redis:
+    database: 5  #Redis索引0~15，默认为0
+    host: r-wz9z0mr7yzd7wf16hy.redis.rds.aliyuncs.com
+    port: 6379
+    password: HhBiosTime(*&ASD!@# #密码（默认为空）
+    lettuce: # 这里标明使用lettuce配置
+      pool:
+        max-active: 100   #连接池最大连接数（使用负值表示没有限制）
+        max-wait: 3000  #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10     #连接池中的最大空闲连接
+        min-idle: 5     #连接池中的最小空闲连接
+    timeout: 10000    #连接超时时间（毫秒）
 # pagehelper分页插件
 pagehelper:
   # 数据库的方言

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+
 @Configuration
 @Import(FeignConfig.FeignLogger.class)
 public class FeignConfig {

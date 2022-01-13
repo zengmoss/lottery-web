@@ -3,6 +3,7 @@ package com.mama100.lotteryweb.service;
 import com.mama100.lotteryweb.mapper.BwBaseinfoMapper;
 import com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ public class BaseInfoService {
     @Autowired
     private BwBaseinfoMapper baseinfoMapper;
 
+    @Cacheable("BaseInfoService")
     public BwBaseinfoWithBLOBs selectByPrimaryKey(Long activityId){
         return baseinfoMapper.selectByPrimaryKey(activityId);
     }
