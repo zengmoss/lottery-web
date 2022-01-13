@@ -2,6 +2,7 @@ package com.mama100.lotteryweb.service;
 
 import com.mama100.lotteryweb.mapper.BwBaseinfoMapper;
 import com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs;
+import com.mama100.lotteryweb.util.CacheNameConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class BaseInfoService {
     @Autowired
     private BwBaseinfoMapper baseinfoMapper;
 
-    @Cacheable("BaseInfoService")
+    @Cacheable(CacheNameConstant.TWO_MINUTE)
     public BwBaseinfoWithBLOBs selectByPrimaryKey(Long activityId){
         return baseinfoMapper.selectByPrimaryKey(activityId);
     }
