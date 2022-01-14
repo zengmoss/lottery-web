@@ -29,6 +29,12 @@ public class BaseInfoService {
     }
     @Transactional(rollbackFor = Exception.class)
     public int insert(BwBaseinfoWithBLOBs record){
-        return baseinfoMapper.insert(record);
+        int r = baseinfoMapper.insert(record);
+        xx();
+        return r;
+    }
+
+    public void xx(){
+        throw new RuntimeException("保存不成功！");
     }
 }
