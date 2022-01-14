@@ -13,10 +13,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.lang.Nullable;
+import org.springframework.util.Assert;
 
 import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +38,23 @@ import java.util.stream.Stream;
 @Configuration
 @Log4j2
 public class RedisConfig extends CachingConfigurerSupport {
+
+    @Bean
+    public RedisTemplate<Object, Object> redisTemplate(LettuceConnectionFactory connectionFactory) {
+        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(connectionFactory);
+        ObjectRedisSerializer objectRedisSerializer = new ObjectRedisSerializer();
+        // key采用String的序列化方式
+        redisTemplate.setKeySerializer(objectRedisSerializer);
+        // hash的key也采用String的序列化方式
+        redisTemplate.setHashKeySerializer(objectRedisSerializer);
+        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
+        // hash的value序列化方式采用jackson
+        redisTemplate.setHashValueSerializer(genericJackson2JsonRedisSerializer);
+        redisTemplate.setValueSerializer(genericJackson2JsonRedisSerializer);
+        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
 
     @Bean
     @Override
@@ -316,6 +339,39 @@ public class RedisConfig extends CachingConfigurerSupport {
 
         public Integer getTime() {
             return time;
+        }
+    }
+
+    public static class ObjectRedisSerializer implements RedisSerializer<Object> {
+        private final Charset charset;
+
+        public ObjectRedisSerializer() {
+            this(StandardCharsets.UTF_8);
+        }
+
+        public ObjectRedisSerializer(Charset charset) {
+            Assert.notNull(charset, "Charset must not be null!");
+            this.charset = charset;
+        }
+        @Override
+        public String deserialize(@Nullable byte[] bytes) {
+            return bytes == null ? null : new String(bytes, this.charset);
+        }
+        @Override
+        public byte[] serialize(@Nullable Object str) {
+            if(str == null){
+                return null;
+            }
+            if(str instanceof String){
+                return ((String)str).getBytes(this.charset);
+            }
+
+            return String.valueOf(str).getBytes(this.charset);
+        }
+
+        @Override
+        public Class<?> getTargetType() {
+            return String.class;
         }
     }
 }
