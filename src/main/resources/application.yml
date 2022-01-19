@@ -3,7 +3,5 @@ server:
   servlet:
     context-path: /lottery-web
 mybatis:
-  # mapper.xml包地址
   mapper-locations: classpath:mapper/*.xml
-  # pojo生成包地址
   type-aliases-package: com.mama100.lotteryweb.po
