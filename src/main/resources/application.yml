@@ -2,6 +2,13 @@ server:
   port: 8080
   servlet:
     context-path: /lottery-web
+  tomcat:
+    connection-timeout: 20000
+    max-connections: 10000
+    accept-count: 3000
+    threads:
+      max: 400
+      min-spare: 17
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.mama100.lotteryweb.po
