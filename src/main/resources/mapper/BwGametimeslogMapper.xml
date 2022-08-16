@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama100.lotteryweb.mapper.BwGametimeslogMapper">
+  <resultMap id="BaseResultMap" type="com.mama100.lotteryweb.po.BwGametimeslog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="game_times_id" jdbcType="BIGINT" property="gameTimesId" />
+    <result column="old_times" jdbcType="INTEGER" property="oldTimes" />
+    <result column="new_times" jdbcType="INTEGER" property="newTimes" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, game_times_id, old_times, new_times, operator, operate_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bw_gameTimesLog
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bw_gameTimesLog
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mama100.lotteryweb.po.BwGametimeslog">
+    insert into bw_gameTimesLog (id, game_times_id, old_times, 
+      new_times, operator, operate_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{gameTimesId,jdbcType=BIGINT}, #{oldTimes,jdbcType=INTEGER}, 
+      #{newTimes,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mama100.lotteryweb.po.BwGametimeslog">
+    insert into bw_gameTimesLog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gameTimesId != null">
+        game_times_id,
+      </if>
+      <if test="oldTimes != null">
+        old_times,
+      </if>
+      <if test="newTimes != null">
+        new_times,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gameTimesId != null">
+        #{gameTimesId,jdbcType=BIGINT},
+      </if>
+      <if test="oldTimes != null">
+        #{oldTimes,jdbcType=INTEGER},
+      </if>
+      <if test="newTimes != null">
+        #{newTimes,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mama100.lotteryweb.po.BwGametimeslog">
+    update bw_gameTimesLog
+    <set>
+      <if test="gameTimesId != null">
+        game_times_id = #{gameTimesId,jdbcType=BIGINT},
+      </if>
+      <if test="oldTimes != null">
+        old_times = #{oldTimes,jdbcType=INTEGER},
+      </if>
+      <if test="newTimes != null">
+        new_times = #{newTimes,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mama100.lotteryweb.po.BwGametimeslog">
+    update bw_gameTimesLog
+    set game_times_id = #{gameTimesId,jdbcType=BIGINT},
+      old_times = #{oldTimes,jdbcType=INTEGER},
+      new_times = #{newTimes,jdbcType=INTEGER},
+      operator = #{operator,jdbcType=VARCHAR},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

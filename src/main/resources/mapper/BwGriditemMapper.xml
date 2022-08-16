@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama100.lotteryweb.mapper.BwGriditemMapper">
+  <resultMap id="BaseResultMap" type="com.mama100.lotteryweb.po.BwGriditem">
+    <id column="item_id" jdbcType="BIGINT" property="itemId" />
+    <result column="activity_id" jdbcType="BIGINT" property="activityId" />
+    <result column="sequence" jdbcType="INTEGER" property="sequence" />
+    <result column="grid_name" jdbcType="VARCHAR" property="gridName" />
+    <result column="bonus_type" jdbcType="VARCHAR" property="bonusType" />
+    <result column="bonus" jdbcType="VARCHAR" property="bonus" />
+    <result column="bonus_name" jdbcType="VARCHAR" property="bonusName" />
+    <result column="bonus_pictureUrl" jdbcType="VARCHAR" property="bonusPictureurl" />
+    <result column="webp_url" jdbcType="VARCHAR" property="webpUrl" />
+    <result column="big_tips" jdbcType="VARCHAR" property="bigTips" />
+    <result column="small_tips" jdbcType="VARCHAR" property="smallTips" />
+    <result column="free_rate" jdbcType="REAL" property="freeRate" />
+    <result column="pay_rate" jdbcType="REAL" property="payRate" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="total_quantity" jdbcType="INTEGER" property="totalQuantity" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="linked_url" jdbcType="VARCHAR" property="linkedUrl" />
+    <result column="jump_type" jdbcType="INTEGER" property="jumpType" />
+    <result column="meta_name_weixin" jdbcType="VARCHAR" property="metaNameWeixin" />
+    <result column="path_weixin" jdbcType="VARCHAR" property="pathWeixin" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, activity_id, sequence, grid_name, bonus_type, bonus, bonus_name, bonus_pictureUrl, 
+    webp_url, big_tips, small_tips, free_rate, pay_rate, quantity, total_quantity, updated_by, 
+    linked_url, jump_type, meta_name_weixin, path_weixin
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bw_gridItem
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bw_gridItem
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mama100.lotteryweb.po.BwGriditem">
+    insert into bw_gridItem (item_id, activity_id, sequence, 
+      grid_name, bonus_type, bonus, 
+      bonus_name, bonus_pictureUrl, webp_url, 
+      big_tips, small_tips, free_rate, 
+      pay_rate, quantity, total_quantity, 
+      updated_by, linked_url, jump_type, 
+      meta_name_weixin, path_weixin)
+    values (#{itemId,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT}, #{sequence,jdbcType=INTEGER}, 
+      #{gridName,jdbcType=VARCHAR}, #{bonusType,jdbcType=VARCHAR}, #{bonus,jdbcType=VARCHAR}, 
+      #{bonusName,jdbcType=VARCHAR}, #{bonusPictureurl,jdbcType=VARCHAR}, #{webpUrl,jdbcType=VARCHAR}, 
+      #{bigTips,jdbcType=VARCHAR}, #{smallTips,jdbcType=VARCHAR}, #{freeRate,jdbcType=REAL}, 
+      #{payRate,jdbcType=REAL}, #{quantity,jdbcType=INTEGER}, #{totalQuantity,jdbcType=INTEGER}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{linkedUrl,jdbcType=VARCHAR}, #{jumpType,jdbcType=INTEGER}, 
+      #{metaNameWeixin,jdbcType=VARCHAR}, #{pathWeixin,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mama100.lotteryweb.po.BwGriditem">
+    insert into bw_gridItem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="sequence != null">
+        sequence,
+      </if>
+      <if test="gridName != null">
+        grid_name,
+      </if>
+      <if test="bonusType != null">
+        bonus_type,
+      </if>
+      <if test="bonus != null">
+        bonus,
+      </if>
+      <if test="bonusName != null">
+        bonus_name,
+      </if>
+      <if test="bonusPictureurl != null">
+        bonus_pictureUrl,
+      </if>
+      <if test="webpUrl != null">
+        webp_url,
+      </if>
+      <if test="bigTips != null">
+        big_tips,
+      </if>
+      <if test="smallTips != null">
+        small_tips,
+      </if>
+      <if test="freeRate != null">
+        free_rate,
+      </if>
+      <if test="payRate != null">
+        pay_rate,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="totalQuantity != null">
+        total_quantity,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="linkedUrl != null">
+        linked_url,
+      </if>
+      <if test="jumpType != null">
+        jump_type,
+      </if>
+      <if test="metaNameWeixin != null">
+        meta_name_weixin,
+      </if>
+      <if test="pathWeixin != null">
+        path_weixin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="sequence != null">
+        #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="gridName != null">
+        #{gridName,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusType != null">
+        #{bonusType,jdbcType=VARCHAR},
+      </if>
+      <if test="bonus != null">
+        #{bonus,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusName != null">
+        #{bonusName,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusPictureurl != null">
+        #{bonusPictureurl,jdbcType=VARCHAR},
+      </if>
+      <if test="webpUrl != null">
+        #{webpUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bigTips != null">
+        #{bigTips,jdbcType=VARCHAR},
+      </if>
+      <if test="smallTips != null">
+        #{smallTips,jdbcType=VARCHAR},
+      </if>
+      <if test="freeRate != null">
+        #{freeRate,jdbcType=REAL},
+      </if>
+      <if test="payRate != null">
+        #{payRate,jdbcType=REAL},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="totalQuantity != null">
+        #{totalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="linkedUrl != null">
+        #{linkedUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="jumpType != null">
+        #{jumpType,jdbcType=INTEGER},
+      </if>
+      <if test="metaNameWeixin != null">
+        #{metaNameWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="pathWeixin != null">
+        #{pathWeixin,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mama100.lotteryweb.po.BwGriditem">
+    update bw_gridItem
+    <set>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="sequence != null">
+        sequence = #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="gridName != null">
+        grid_name = #{gridName,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusType != null">
+        bonus_type = #{bonusType,jdbcType=VARCHAR},
+      </if>
+      <if test="bonus != null">
+        bonus = #{bonus,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusName != null">
+        bonus_name = #{bonusName,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusPictureurl != null">
+        bonus_pictureUrl = #{bonusPictureurl,jdbcType=VARCHAR},
+      </if>
+      <if test="webpUrl != null">
+        webp_url = #{webpUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bigTips != null">
+        big_tips = #{bigTips,jdbcType=VARCHAR},
+      </if>
+      <if test="smallTips != null">
+        small_tips = #{smallTips,jdbcType=VARCHAR},
+      </if>
+      <if test="freeRate != null">
+        free_rate = #{freeRate,jdbcType=REAL},
+      </if>
+      <if test="payRate != null">
+        pay_rate = #{payRate,jdbcType=REAL},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="totalQuantity != null">
+        total_quantity = #{totalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="linkedUrl != null">
+        linked_url = #{linkedUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="jumpType != null">
+        jump_type = #{jumpType,jdbcType=INTEGER},
+      </if>
+      <if test="metaNameWeixin != null">
+        meta_name_weixin = #{metaNameWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="pathWeixin != null">
+        path_weixin = #{pathWeixin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mama100.lotteryweb.po.BwGriditem">
+    update bw_gridItem
+    set activity_id = #{activityId,jdbcType=BIGINT},
+      sequence = #{sequence,jdbcType=INTEGER},
+      grid_name = #{gridName,jdbcType=VARCHAR},
+      bonus_type = #{bonusType,jdbcType=VARCHAR},
+      bonus = #{bonus,jdbcType=VARCHAR},
+      bonus_name = #{bonusName,jdbcType=VARCHAR},
+      bonus_pictureUrl = #{bonusPictureurl,jdbcType=VARCHAR},
+      webp_url = #{webpUrl,jdbcType=VARCHAR},
+      big_tips = #{bigTips,jdbcType=VARCHAR},
+      small_tips = #{smallTips,jdbcType=VARCHAR},
+      free_rate = #{freeRate,jdbcType=REAL},
+      pay_rate = #{payRate,jdbcType=REAL},
+      quantity = #{quantity,jdbcType=INTEGER},
+      total_quantity = #{totalQuantity,jdbcType=INTEGER},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      linked_url = #{linkedUrl,jdbcType=VARCHAR},
+      jump_type = #{jumpType,jdbcType=INTEGER},
+      meta_name_weixin = #{metaNameWeixin,jdbcType=VARCHAR},
+      path_weixin = #{pathWeixin,jdbcType=VARCHAR}
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </update>
+</mapper>

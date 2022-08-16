@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama100.lotteryweb.mapper.BwAskquestionMapper">
+  <resultMap id="BaseResultMap" type="com.mama100.lotteryweb.po.BwAskquestion">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="question" jdbcType="VARCHAR" property="question" />
+    <result column="right_ask" jdbcType="VARCHAR" property="rightAsk" />
+    <result column="ask1" jdbcType="VARCHAR" property="ask1" />
+    <result column="ask2" jdbcType="VARCHAR" property="ask2" />
+    <result column="ask3" jdbcType="VARCHAR" property="ask3" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="system" jdbcType="VARCHAR" property="system" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="priority" jdbcType="INTEGER" property="priority" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, question, right_ask, ask1, ask2, ask3, category, created_time, created_by, system, 
+    updated_by, priority
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bw_askQuestion
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bw_askQuestion
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mama100.lotteryweb.po.BwAskquestion">
+    insert into bw_askQuestion (id, question, right_ask, 
+      ask1, ask2, ask3, category, 
+      created_time, created_by, system, 
+      updated_by, priority)
+    values (#{id,jdbcType=BIGINT}, #{question,jdbcType=VARCHAR}, #{rightAsk,jdbcType=VARCHAR}, 
+      #{ask1,jdbcType=VARCHAR}, #{ask2,jdbcType=VARCHAR}, #{ask3,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{system,jdbcType=VARCHAR}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mama100.lotteryweb.po.BwAskquestion">
+    insert into bw_askQuestion
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="question != null">
+        question,
+      </if>
+      <if test="rightAsk != null">
+        right_ask,
+      </if>
+      <if test="ask1 != null">
+        ask1,
+      </if>
+      <if test="ask2 != null">
+        ask2,
+      </if>
+      <if test="ask3 != null">
+        ask3,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="system != null">
+        system,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="question != null">
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="rightAsk != null">
+        #{rightAsk,jdbcType=VARCHAR},
+      </if>
+      <if test="ask1 != null">
+        #{ask1,jdbcType=VARCHAR},
+      </if>
+      <if test="ask2 != null">
+        #{ask2,jdbcType=VARCHAR},
+      </if>
+      <if test="ask3 != null">
+        #{ask3,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="system != null">
+        #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mama100.lotteryweb.po.BwAskquestion">
+    update bw_askQuestion
+    <set>
+      <if test="question != null">
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="rightAsk != null">
+        right_ask = #{rightAsk,jdbcType=VARCHAR},
+      </if>
+      <if test="ask1 != null">
+        ask1 = #{ask1,jdbcType=VARCHAR},
+      </if>
+      <if test="ask2 != null">
+        ask2 = #{ask2,jdbcType=VARCHAR},
+      </if>
+      <if test="ask3 != null">
+        ask3 = #{ask3,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="system != null">
+        system = #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mama100.lotteryweb.po.BwAskquestion">
+    update bw_askQuestion
+    set question = #{question,jdbcType=VARCHAR},
+      right_ask = #{rightAsk,jdbcType=VARCHAR},
+      ask1 = #{ask1,jdbcType=VARCHAR},
+      ask2 = #{ask2,jdbcType=VARCHAR},
+      ask3 = #{ask3,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      system = #{system,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

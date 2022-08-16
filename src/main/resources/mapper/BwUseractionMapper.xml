@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama100.lotteryweb.mapper.BwUseractionMapper">
+  <resultMap id="BaseResultMap" type="com.mama100.lotteryweb.po.BwUseraction">
+    <id column="action_id" jdbcType="BIGINT" property="actionId" />
+    <result column="item_id" jdbcType="BIGINT" property="itemId" />
+    <result column="activity_id" jdbcType="BIGINT" property="activityId" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="action_times" jdbcType="INTEGER" property="actionTimes" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="is_winning" jdbcType="BIT" property="isWinning" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district_code" jdbcType="VARCHAR" property="districtCode" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="gift_phone" jdbcType="CHAR" property="giftPhone" />
+    <result column="mail_code" jdbcType="VARCHAR" property="mailCode" />
+    <result column="received_name" jdbcType="VARCHAR" property="receivedName" />
+    <result column="received_time" jdbcType="TIMESTAMP" property="receivedTime" />
+    <result column="has_received" jdbcType="BIT" property="hasReceived" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="winning_time" jdbcType="TIMESTAMP" property="winningTime" />
+    <result column="bonus" jdbcType="VARCHAR" property="bonus" />
+    <result column="bonus_type" jdbcType="VARCHAR" property="bonusType" />
+    <result column="system" jdbcType="VARCHAR" property="system" />
+    <result column="is_pay" jdbcType="BIT" property="isPay" />
+    <result column="used_score" jdbcType="INTEGER" property="usedScore" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="bonus_name" jdbcType="VARCHAR" property="bonusName" />
+    <result column="terminal_code" jdbcType="VARCHAR" property="terminalCode" />
+    <result column="terminal_name" jdbcType="VARCHAR" property="terminalName" />
+    <result column="received_terminal_name" jdbcType="VARCHAR" property="receivedTerminalName" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="orderCode" jdbcType="VARCHAR" property="ordercode" />
+    <result column="received_terminal_code" jdbcType="VARCHAR" property="receivedTerminalCode" />
+    <result column="received_bonus" jdbcType="VARCHAR" property="receivedBonus" />
+    <result column="write_off_system" jdbcType="VARCHAR" property="writeOffSystem" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    action_id, item_id, activity_id, phone, action_times, user_code, created_time, is_winning, 
+    province_code, province, city_code, city, district_code, district, address, gift_phone, 
+    mail_code, received_name, received_time, has_received, updated_by, winning_time, 
+    bonus, bonus_type, system, is_pay, used_score, activity_name, bonus_name, terminal_code, 
+    terminal_name, received_terminal_name, customer_id, orderCode, received_terminal_code, 
+    received_bonus, write_off_system
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bw_userAction
+    where action_id = #{actionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bw_userAction
+    where action_id = #{actionId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mama100.lotteryweb.po.BwUseraction">
+    insert into bw_userAction (action_id, item_id, activity_id, 
+      phone, action_times, user_code, 
+      created_time, is_winning, province_code, 
+      province, city_code, city, 
+      district_code, district, address, 
+      gift_phone, mail_code, received_name, 
+      received_time, has_received, updated_by, 
+      winning_time, bonus, bonus_type, 
+      system, is_pay, used_score, 
+      activity_name, bonus_name, terminal_code, 
+      terminal_name, received_terminal_name, customer_id, 
+      orderCode, received_terminal_code, received_bonus, 
+      write_off_system)
+    values (#{actionId,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT}, 
+      #{phone,jdbcType=VARCHAR}, #{actionTimes,jdbcType=INTEGER}, #{userCode,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{isWinning,jdbcType=BIT}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{districtCode,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{giftPhone,jdbcType=CHAR}, #{mailCode,jdbcType=VARCHAR}, #{receivedName,jdbcType=VARCHAR}, 
+      #{receivedTime,jdbcType=TIMESTAMP}, #{hasReceived,jdbcType=BIT}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{winningTime,jdbcType=TIMESTAMP}, #{bonus,jdbcType=VARCHAR}, #{bonusType,jdbcType=VARCHAR}, 
+      #{system,jdbcType=VARCHAR}, #{isPay,jdbcType=BIT}, #{usedScore,jdbcType=INTEGER}, 
+      #{activityName,jdbcType=VARCHAR}, #{bonusName,jdbcType=VARCHAR}, #{terminalCode,jdbcType=VARCHAR}, 
+      #{terminalName,jdbcType=VARCHAR}, #{receivedTerminalName,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{ordercode,jdbcType=VARCHAR}, #{receivedTerminalCode,jdbcType=VARCHAR}, #{receivedBonus,jdbcType=VARCHAR}, 
+      #{writeOffSystem,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mama100.lotteryweb.po.BwUseraction">
+    insert into bw_userAction
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="actionId != null">
+        action_id,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="actionTimes != null">
+        action_times,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="isWinning != null">
+        is_winning,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="districtCode != null">
+        district_code,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="giftPhone != null">
+        gift_phone,
+      </if>
+      <if test="mailCode != null">
+        mail_code,
+      </if>
+      <if test="receivedName != null">
+        received_name,
+      </if>
+      <if test="receivedTime != null">
+        received_time,
+      </if>
+      <if test="hasReceived != null">
+        has_received,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="winningTime != null">
+        winning_time,
+      </if>
+      <if test="bonus != null">
+        bonus,
+      </if>
+      <if test="bonusType != null">
+        bonus_type,
+      </if>
+      <if test="system != null">
+        system,
+      </if>
+      <if test="isPay != null">
+        is_pay,
+      </if>
+      <if test="usedScore != null">
+        used_score,
+      </if>
+      <if test="activityName != null">
+        activity_name,
+      </if>
+      <if test="bonusName != null">
+        bonus_name,
+      </if>
+      <if test="terminalCode != null">
+        terminal_code,
+      </if>
+      <if test="terminalName != null">
+        terminal_name,
+      </if>
+      <if test="receivedTerminalName != null">
+        received_terminal_name,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="ordercode != null">
+        orderCode,
+      </if>
+      <if test="receivedTerminalCode != null">
+        received_terminal_code,
+      </if>
+      <if test="receivedBonus != null">
+        received_bonus,
+      </if>
+      <if test="writeOffSystem != null">
+        write_off_system,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="actionId != null">
+        #{actionId,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="actionTimes != null">
+        #{actionTimes,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isWinning != null">
+        #{isWinning,jdbcType=BIT},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null">
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="giftPhone != null">
+        #{giftPhone,jdbcType=CHAR},
+      </if>
+      <if test="mailCode != null">
+        #{mailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedName != null">
+        #{receivedName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTime != null">
+        #{receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hasReceived != null">
+        #{hasReceived,jdbcType=BIT},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="winningTime != null">
+        #{winningTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bonus != null">
+        #{bonus,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusType != null">
+        #{bonusType,jdbcType=VARCHAR},
+      </if>
+      <if test="system != null">
+        #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="isPay != null">
+        #{isPay,jdbcType=BIT},
+      </if>
+      <if test="usedScore != null">
+        #{usedScore,jdbcType=INTEGER},
+      </if>
+      <if test="activityName != null">
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusName != null">
+        #{bonusName,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalCode != null">
+        #{terminalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalName != null">
+        #{terminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTerminalName != null">
+        #{receivedTerminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="ordercode != null">
+        #{ordercode,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTerminalCode != null">
+        #{receivedTerminalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedBonus != null">
+        #{receivedBonus,jdbcType=VARCHAR},
+      </if>
+      <if test="writeOffSystem != null">
+        #{writeOffSystem,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mama100.lotteryweb.po.BwUseraction">
+    update bw_userAction
+    <set>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="actionTimes != null">
+        action_times = #{actionTimes,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null">
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isWinning != null">
+        is_winning = #{isWinning,jdbcType=BIT},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null">
+        district_code = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="giftPhone != null">
+        gift_phone = #{giftPhone,jdbcType=CHAR},
+      </if>
+      <if test="mailCode != null">
+        mail_code = #{mailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedName != null">
+        received_name = #{receivedName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTime != null">
+        received_time = #{receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hasReceived != null">
+        has_received = #{hasReceived,jdbcType=BIT},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="winningTime != null">
+        winning_time = #{winningTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bonus != null">
+        bonus = #{bonus,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusType != null">
+        bonus_type = #{bonusType,jdbcType=VARCHAR},
+      </if>
+      <if test="system != null">
+        system = #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="isPay != null">
+        is_pay = #{isPay,jdbcType=BIT},
+      </if>
+      <if test="usedScore != null">
+        used_score = #{usedScore,jdbcType=INTEGER},
+      </if>
+      <if test="activityName != null">
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusName != null">
+        bonus_name = #{bonusName,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalCode != null">
+        terminal_code = #{terminalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalName != null">
+        terminal_name = #{terminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTerminalName != null">
+        received_terminal_name = #{receivedTerminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="ordercode != null">
+        orderCode = #{ordercode,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTerminalCode != null">
+        received_terminal_code = #{receivedTerminalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedBonus != null">
+        received_bonus = #{receivedBonus,jdbcType=VARCHAR},
+      </if>
+      <if test="writeOffSystem != null">
+        write_off_system = #{writeOffSystem,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where action_id = #{actionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mama100.lotteryweb.po.BwUseraction">
+    update bw_userAction
+    set item_id = #{itemId,jdbcType=BIGINT},
+      activity_id = #{activityId,jdbcType=BIGINT},
+      phone = #{phone,jdbcType=VARCHAR},
+      action_times = #{actionTimes,jdbcType=INTEGER},
+      user_code = #{userCode,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      is_winning = #{isWinning,jdbcType=BIT},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district_code = #{districtCode,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      gift_phone = #{giftPhone,jdbcType=CHAR},
+      mail_code = #{mailCode,jdbcType=VARCHAR},
+      received_name = #{receivedName,jdbcType=VARCHAR},
+      received_time = #{receivedTime,jdbcType=TIMESTAMP},
+      has_received = #{hasReceived,jdbcType=BIT},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      winning_time = #{winningTime,jdbcType=TIMESTAMP},
+      bonus = #{bonus,jdbcType=VARCHAR},
+      bonus_type = #{bonusType,jdbcType=VARCHAR},
+      system = #{system,jdbcType=VARCHAR},
+      is_pay = #{isPay,jdbcType=BIT},
+      used_score = #{usedScore,jdbcType=INTEGER},
+      activity_name = #{activityName,jdbcType=VARCHAR},
+      bonus_name = #{bonusName,jdbcType=VARCHAR},
+      terminal_code = #{terminalCode,jdbcType=VARCHAR},
+      terminal_name = #{terminalName,jdbcType=VARCHAR},
+      received_terminal_name = #{receivedTerminalName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      orderCode = #{ordercode,jdbcType=VARCHAR},
+      received_terminal_code = #{receivedTerminalCode,jdbcType=VARCHAR},
+      received_bonus = #{receivedBonus,jdbcType=VARCHAR},
+      write_off_system = #{writeOffSystem,jdbcType=VARCHAR}
+    where action_id = #{actionId,jdbcType=BIGINT}
+  </update>
+</mapper>

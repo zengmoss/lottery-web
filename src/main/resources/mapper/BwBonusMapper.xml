@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama100.lotteryweb.mapper.BwBonusMapper">
+  <resultMap id="BaseResultMap" type="com.mama100.lotteryweb.po.BwBonus">
+    <id column="bonus_id" jdbcType="BIGINT" property="bonusId" />
+    <result column="bonus_type" jdbcType="VARCHAR" property="bonusType" />
+    <result column="bonus_name" jdbcType="VARCHAR" property="bonusName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bonus_id, bonus_type, bonus_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bw_bonus
+    where bonus_id = #{bonusId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bw_bonus
+    where bonus_id = #{bonusId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mama100.lotteryweb.po.BwBonus">
+    insert into bw_bonus (bonus_id, bonus_type, bonus_name
+      )
+    values (#{bonusId,jdbcType=BIGINT}, #{bonusType,jdbcType=VARCHAR}, #{bonusName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mama100.lotteryweb.po.BwBonus">
+    insert into bw_bonus
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bonusId != null">
+        bonus_id,
+      </if>
+      <if test="bonusType != null">
+        bonus_type,
+      </if>
+      <if test="bonusName != null">
+        bonus_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bonusId != null">
+        #{bonusId,jdbcType=BIGINT},
+      </if>
+      <if test="bonusType != null">
+        #{bonusType,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusName != null">
+        #{bonusName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mama100.lotteryweb.po.BwBonus">
+    update bw_bonus
+    <set>
+      <if test="bonusType != null">
+        bonus_type = #{bonusType,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusName != null">
+        bonus_name = #{bonusName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bonus_id = #{bonusId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mama100.lotteryweb.po.BwBonus">
+    update bw_bonus
+    set bonus_type = #{bonusType,jdbcType=VARCHAR},
+      bonus_name = #{bonusName,jdbcType=VARCHAR}
+    where bonus_id = #{bonusId,jdbcType=BIGINT}
+  </update>
+</mapper>

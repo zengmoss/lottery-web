@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama100.lotteryweb.mapper.BwUsererrorMapper">
+  <resultMap id="BaseResultMap" type="com.mama100.lotteryweb.po.BwUsererror">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="bonus_type" jdbcType="VARCHAR" property="bonusType" />
+    <result column="bonus" jdbcType="VARCHAR" property="bonus" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="grid_id" jdbcType="BIGINT" property="gridId" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, customer_id, bonus_type, bonus, detail, grid_id, created_time, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bw_userError
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bw_userError
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mama100.lotteryweb.po.BwUsererror">
+    insert into bw_userError (id, customer_id, bonus_type, 
+      bonus, detail, grid_id, 
+      created_time, updated_time)
+    values (#{id,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{bonusType,jdbcType=VARCHAR}, 
+      #{bonus,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{gridId,jdbcType=BIGINT}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mama100.lotteryweb.po.BwUsererror">
+    insert into bw_userError
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="bonusType != null">
+        bonus_type,
+      </if>
+      <if test="bonus != null">
+        bonus,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="gridId != null">
+        grid_id,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="bonusType != null">
+        #{bonusType,jdbcType=VARCHAR},
+      </if>
+      <if test="bonus != null">
+        #{bonus,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="gridId != null">
+        #{gridId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mama100.lotteryweb.po.BwUsererror">
+    update bw_userError
+    <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="bonusType != null">
+        bonus_type = #{bonusType,jdbcType=VARCHAR},
+      </if>
+      <if test="bonus != null">
+        bonus = #{bonus,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="gridId != null">
+        grid_id = #{gridId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mama100.lotteryweb.po.BwUsererror">
+    update bw_userError
+    set customer_id = #{customerId,jdbcType=BIGINT},
+      bonus_type = #{bonusType,jdbcType=VARCHAR},
+      bonus = #{bonus,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      grid_id = #{gridId,jdbcType=BIGINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

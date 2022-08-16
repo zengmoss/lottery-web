@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama100.lotteryweb.mapper.BwBaseinfoMapper">
+  <resultMap id="BaseResultMap" type="com.mama100.lotteryweb.po.BwBaseinfo">
+    <id column="activity_id" jdbcType="BIGINT" property="activityId" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="published_by" jdbcType="VARCHAR" property="publishedBy" />
+    <result column="used_score" jdbcType="INTEGER" property="usedScore" />
+    <result column="free_times" jdbcType="INTEGER" property="freeTimes" />
+    <result column="online" jdbcType="BIT" property="online" />
+    <result column="activity_url" jdbcType="VARCHAR" property="activityUrl" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="system" jdbcType="VARCHAR" property="system" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="act_free_times" jdbcType="TINYINT" property="actFreeTimes" />
+    <result column="play_rules" jdbcType="INTEGER" property="playRules" />
+    <result column="rule_id" jdbcType="VARCHAR" property="ruleId" />
+    <result column="background_img" jdbcType="VARCHAR" property="backgroundImg" />
+    <result column="background_imgWebp" jdbcType="VARCHAR" property="backgroundImgwebp" />
+    <result column="skip_url" jdbcType="VARCHAR" property="skipUrl" />
+    <result column="brand_skin" jdbcType="INTEGER" property="brandSkin" />
+    <result column="external_url" jdbcType="VARCHAR" property="externalUrl" />
+    <result column="receive_type" jdbcType="INTEGER" property="receiveType" />
+    <result column="trigger_type" jdbcType="INTEGER" property="triggerType" />
+    <result column="trigger_coupon" jdbcType="VARCHAR" property="triggerCoupon" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+    <result column="office_code" jdbcType="VARCHAR" property="officeCode" />
+    <result column="guide_award_rule_id" jdbcType="VARCHAR" property="guideAwardRuleId" />
+    <result column="win_type" jdbcType="INTEGER" property="winType" />
+    <result column="win_num" jdbcType="INTEGER" property="winNum" />
+    <result column="business_type" jdbcType="INTEGER" property="businessType" />
+    <result column="shownum" jdbcType="INTEGER" property="shownum" />
+    <result column="notify_user" jdbcType="VARCHAR" property="notifyUser" />
+    <result column="external_url_type" jdbcType="VARCHAR" property="externalUrlType" />
+    <result column="empty_stock_switch" jdbcType="INTEGER" property="emptyStockSwitch" />
+    <result column="show_level" jdbcType="INTEGER" property="showLevel" />
+    <result column="show_growth" jdbcType="INTEGER" property="showGrowth" />
+    <result column="activity_type" jdbcType="INTEGER" property="activityType" />
+    <result column="sync_member_miniprogram" jdbcType="INTEGER" property="syncMemberMiniprogram" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs">
+    <result column="receive_terminal" jdbcType="LONGVARCHAR" property="receiveTerminal" />
+    <result column="trigger_terminal" jdbcType="LONGVARCHAR" property="triggerTerminal" />
+    <result column="phones" jdbcType="LONGVARCHAR" property="phones" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    activity_id, activity_name, start_time, end_time, description, published_by, used_score, 
+    free_times, online, activity_url, created_by, created_time, system, status, updated_by, 
+    act_free_times, play_rules, rule_id, background_img, background_imgWebp, skip_url, 
+    brand_skin, external_url, receive_type, trigger_type, trigger_coupon, area_code, 
+    office_code, guide_award_rule_id, win_type, win_num, business_type, shownum, notify_user, 
+    external_url_type, empty_stock_switch, show_level, show_growth, activity_type, sync_member_miniprogram
+  </sql>
+  <sql id="Blob_Column_List">
+    receive_terminal, trigger_terminal, phones
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from bw_baseInfo
+    where activity_id = #{activityId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bw_baseInfo
+    where activity_id = #{activityId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs">
+    insert into bw_baseInfo (activity_id, activity_name, start_time, 
+      end_time, description, published_by, 
+      used_score, free_times, online, 
+      activity_url, created_by, created_time, 
+      system, status, updated_by, 
+      act_free_times, play_rules, rule_id, 
+      background_img, background_imgWebp, skip_url, 
+      brand_skin, external_url, receive_type, 
+      trigger_type, trigger_coupon, area_code, 
+      office_code, guide_award_rule_id, win_type, 
+      win_num, business_type, shownum, 
+      notify_user, external_url_type, empty_stock_switch, 
+      show_level, show_growth, activity_type, 
+      sync_member_miniprogram, receive_terminal, 
+      trigger_terminal, phones)
+    values (#{activityId,jdbcType=BIGINT}, #{activityName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{publishedBy,jdbcType=VARCHAR}, 
+      #{usedScore,jdbcType=INTEGER}, #{freeTimes,jdbcType=INTEGER}, #{online,jdbcType=BIT}, 
+      #{activityUrl,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{system,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{actFreeTimes,jdbcType=TINYINT}, #{playRules,jdbcType=INTEGER}, #{ruleId,jdbcType=VARCHAR}, 
+      #{backgroundImg,jdbcType=VARCHAR}, #{backgroundImgwebp,jdbcType=VARCHAR}, #{skipUrl,jdbcType=VARCHAR}, 
+      #{brandSkin,jdbcType=INTEGER}, #{externalUrl,jdbcType=VARCHAR}, #{receiveType,jdbcType=INTEGER}, 
+      #{triggerType,jdbcType=INTEGER}, #{triggerCoupon,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}, 
+      #{officeCode,jdbcType=VARCHAR}, #{guideAwardRuleId,jdbcType=VARCHAR}, #{winType,jdbcType=INTEGER}, 
+      #{winNum,jdbcType=INTEGER}, #{businessType,jdbcType=INTEGER}, #{shownum,jdbcType=INTEGER}, 
+      #{notifyUser,jdbcType=VARCHAR}, #{externalUrlType,jdbcType=VARCHAR}, #{emptyStockSwitch,jdbcType=INTEGER}, 
+      #{showLevel,jdbcType=INTEGER}, #{showGrowth,jdbcType=INTEGER}, #{activityType,jdbcType=INTEGER}, 
+      #{syncMemberMiniprogram,jdbcType=INTEGER}, #{receiveTerminal,jdbcType=LONGVARCHAR}, 
+      #{triggerTerminal,jdbcType=LONGVARCHAR}, #{phones,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs">
+    insert into bw_baseInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="activityName != null">
+        activity_name,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="publishedBy != null">
+        published_by,
+      </if>
+      <if test="usedScore != null">
+        used_score,
+      </if>
+      <if test="freeTimes != null">
+        free_times,
+      </if>
+      <if test="online != null">
+        online,
+      </if>
+      <if test="activityUrl != null">
+        activity_url,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="system != null">
+        system,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="actFreeTimes != null">
+        act_free_times,
+      </if>
+      <if test="playRules != null">
+        play_rules,
+      </if>
+      <if test="ruleId != null">
+        rule_id,
+      </if>
+      <if test="backgroundImg != null">
+        background_img,
+      </if>
+      <if test="backgroundImgwebp != null">
+        background_imgWebp,
+      </if>
+      <if test="skipUrl != null">
+        skip_url,
+      </if>
+      <if test="brandSkin != null">
+        brand_skin,
+      </if>
+      <if test="externalUrl != null">
+        external_url,
+      </if>
+      <if test="receiveType != null">
+        receive_type,
+      </if>
+      <if test="triggerType != null">
+        trigger_type,
+      </if>
+      <if test="triggerCoupon != null">
+        trigger_coupon,
+      </if>
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="officeCode != null">
+        office_code,
+      </if>
+      <if test="guideAwardRuleId != null">
+        guide_award_rule_id,
+      </if>
+      <if test="winType != null">
+        win_type,
+      </if>
+      <if test="winNum != null">
+        win_num,
+      </if>
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="shownum != null">
+        shownum,
+      </if>
+      <if test="notifyUser != null">
+        notify_user,
+      </if>
+      <if test="externalUrlType != null">
+        external_url_type,
+      </if>
+      <if test="emptyStockSwitch != null">
+        empty_stock_switch,
+      </if>
+      <if test="showLevel != null">
+        show_level,
+      </if>
+      <if test="showGrowth != null">
+        show_growth,
+      </if>
+      <if test="activityType != null">
+        activity_type,
+      </if>
+      <if test="syncMemberMiniprogram != null">
+        sync_member_miniprogram,
+      </if>
+      <if test="receiveTerminal != null">
+        receive_terminal,
+      </if>
+      <if test="triggerTerminal != null">
+        trigger_terminal,
+      </if>
+      <if test="phones != null">
+        phones,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityId != null">
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="activityName != null">
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedBy != null">
+        #{publishedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="usedScore != null">
+        #{usedScore,jdbcType=INTEGER},
+      </if>
+      <if test="freeTimes != null">
+        #{freeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="online != null">
+        #{online,jdbcType=BIT},
+      </if>
+      <if test="activityUrl != null">
+        #{activityUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="system != null">
+        #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="actFreeTimes != null">
+        #{actFreeTimes,jdbcType=TINYINT},
+      </if>
+      <if test="playRules != null">
+        #{playRules,jdbcType=INTEGER},
+      </if>
+      <if test="ruleId != null">
+        #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundImg != null">
+        #{backgroundImg,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundImgwebp != null">
+        #{backgroundImgwebp,jdbcType=VARCHAR},
+      </if>
+      <if test="skipUrl != null">
+        #{skipUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="brandSkin != null">
+        #{brandSkin,jdbcType=INTEGER},
+      </if>
+      <if test="externalUrl != null">
+        #{externalUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveType != null">
+        #{receiveType,jdbcType=INTEGER},
+      </if>
+      <if test="triggerType != null">
+        #{triggerType,jdbcType=INTEGER},
+      </if>
+      <if test="triggerCoupon != null">
+        #{triggerCoupon,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="officeCode != null">
+        #{officeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guideAwardRuleId != null">
+        #{guideAwardRuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="winType != null">
+        #{winType,jdbcType=INTEGER},
+      </if>
+      <if test="winNum != null">
+        #{winNum,jdbcType=INTEGER},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=INTEGER},
+      </if>
+      <if test="shownum != null">
+        #{shownum,jdbcType=INTEGER},
+      </if>
+      <if test="notifyUser != null">
+        #{notifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="externalUrlType != null">
+        #{externalUrlType,jdbcType=VARCHAR},
+      </if>
+      <if test="emptyStockSwitch != null">
+        #{emptyStockSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="showLevel != null">
+        #{showLevel,jdbcType=INTEGER},
+      </if>
+      <if test="showGrowth != null">
+        #{showGrowth,jdbcType=INTEGER},
+      </if>
+      <if test="activityType != null">
+        #{activityType,jdbcType=INTEGER},
+      </if>
+      <if test="syncMemberMiniprogram != null">
+        #{syncMemberMiniprogram,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTerminal != null">
+        #{receiveTerminal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="triggerTerminal != null">
+        #{triggerTerminal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="phones != null">
+        #{phones,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs">
+    update bw_baseInfo
+    <set>
+      <if test="activityName != null">
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedBy != null">
+        published_by = #{publishedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="usedScore != null">
+        used_score = #{usedScore,jdbcType=INTEGER},
+      </if>
+      <if test="freeTimes != null">
+        free_times = #{freeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="online != null">
+        online = #{online,jdbcType=BIT},
+      </if>
+      <if test="activityUrl != null">
+        activity_url = #{activityUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="system != null">
+        system = #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="actFreeTimes != null">
+        act_free_times = #{actFreeTimes,jdbcType=TINYINT},
+      </if>
+      <if test="playRules != null">
+        play_rules = #{playRules,jdbcType=INTEGER},
+      </if>
+      <if test="ruleId != null">
+        rule_id = #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundImg != null">
+        background_img = #{backgroundImg,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundImgwebp != null">
+        background_imgWebp = #{backgroundImgwebp,jdbcType=VARCHAR},
+      </if>
+      <if test="skipUrl != null">
+        skip_url = #{skipUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="brandSkin != null">
+        brand_skin = #{brandSkin,jdbcType=INTEGER},
+      </if>
+      <if test="externalUrl != null">
+        external_url = #{externalUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveType != null">
+        receive_type = #{receiveType,jdbcType=INTEGER},
+      </if>
+      <if test="triggerType != null">
+        trigger_type = #{triggerType,jdbcType=INTEGER},
+      </if>
+      <if test="triggerCoupon != null">
+        trigger_coupon = #{triggerCoupon,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="officeCode != null">
+        office_code = #{officeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guideAwardRuleId != null">
+        guide_award_rule_id = #{guideAwardRuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="winType != null">
+        win_type = #{winType,jdbcType=INTEGER},
+      </if>
+      <if test="winNum != null">
+        win_num = #{winNum,jdbcType=INTEGER},
+      </if>
+      <if test="businessType != null">
+        business_type = #{businessType,jdbcType=INTEGER},
+      </if>
+      <if test="shownum != null">
+        shownum = #{shownum,jdbcType=INTEGER},
+      </if>
+      <if test="notifyUser != null">
+        notify_user = #{notifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="externalUrlType != null">
+        external_url_type = #{externalUrlType,jdbcType=VARCHAR},
+      </if>
+      <if test="emptyStockSwitch != null">
+        empty_stock_switch = #{emptyStockSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="showLevel != null">
+        show_level = #{showLevel,jdbcType=INTEGER},
+      </if>
+      <if test="showGrowth != null">
+        show_growth = #{showGrowth,jdbcType=INTEGER},
+      </if>
+      <if test="activityType != null">
+        activity_type = #{activityType,jdbcType=INTEGER},
+      </if>
+      <if test="syncMemberMiniprogram != null">
+        sync_member_miniprogram = #{syncMemberMiniprogram,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTerminal != null">
+        receive_terminal = #{receiveTerminal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="triggerTerminal != null">
+        trigger_terminal = #{triggerTerminal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="phones != null">
+        phones = #{phones,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where activity_id = #{activityId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs">
+    update bw_baseInfo
+    set activity_name = #{activityName,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      published_by = #{publishedBy,jdbcType=VARCHAR},
+      used_score = #{usedScore,jdbcType=INTEGER},
+      free_times = #{freeTimes,jdbcType=INTEGER},
+      online = #{online,jdbcType=BIT},
+      activity_url = #{activityUrl,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      system = #{system,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      act_free_times = #{actFreeTimes,jdbcType=TINYINT},
+      play_rules = #{playRules,jdbcType=INTEGER},
+      rule_id = #{ruleId,jdbcType=VARCHAR},
+      background_img = #{backgroundImg,jdbcType=VARCHAR},
+      background_imgWebp = #{backgroundImgwebp,jdbcType=VARCHAR},
+      skip_url = #{skipUrl,jdbcType=VARCHAR},
+      brand_skin = #{brandSkin,jdbcType=INTEGER},
+      external_url = #{externalUrl,jdbcType=VARCHAR},
+      receive_type = #{receiveType,jdbcType=INTEGER},
+      trigger_type = #{triggerType,jdbcType=INTEGER},
+      trigger_coupon = #{triggerCoupon,jdbcType=VARCHAR},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      office_code = #{officeCode,jdbcType=VARCHAR},
+      guide_award_rule_id = #{guideAwardRuleId,jdbcType=VARCHAR},
+      win_type = #{winType,jdbcType=INTEGER},
+      win_num = #{winNum,jdbcType=INTEGER},
+      business_type = #{businessType,jdbcType=INTEGER},
+      shownum = #{shownum,jdbcType=INTEGER},
+      notify_user = #{notifyUser,jdbcType=VARCHAR},
+      external_url_type = #{externalUrlType,jdbcType=VARCHAR},
+      empty_stock_switch = #{emptyStockSwitch,jdbcType=INTEGER},
+      show_level = #{showLevel,jdbcType=INTEGER},
+      show_growth = #{showGrowth,jdbcType=INTEGER},
+      activity_type = #{activityType,jdbcType=INTEGER},
+      sync_member_miniprogram = #{syncMemberMiniprogram,jdbcType=INTEGER},
+      receive_terminal = #{receiveTerminal,jdbcType=LONGVARCHAR},
+      trigger_terminal = #{triggerTerminal,jdbcType=LONGVARCHAR},
+      phones = #{phones,jdbcType=LONGVARCHAR}
+    where activity_id = #{activityId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mama100.lotteryweb.po.BwBaseinfo">
+    update bw_baseInfo
+    set activity_name = #{activityName,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      published_by = #{publishedBy,jdbcType=VARCHAR},
+      used_score = #{usedScore,jdbcType=INTEGER},
+      free_times = #{freeTimes,jdbcType=INTEGER},
+      online = #{online,jdbcType=BIT},
+      activity_url = #{activityUrl,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      system = #{system,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      act_free_times = #{actFreeTimes,jdbcType=TINYINT},
+      play_rules = #{playRules,jdbcType=INTEGER},
+      rule_id = #{ruleId,jdbcType=VARCHAR},
+      background_img = #{backgroundImg,jdbcType=VARCHAR},
+      background_imgWebp = #{backgroundImgwebp,jdbcType=VARCHAR},
+      skip_url = #{skipUrl,jdbcType=VARCHAR},
+      brand_skin = #{brandSkin,jdbcType=INTEGER},
+      external_url = #{externalUrl,jdbcType=VARCHAR},
+      receive_type = #{receiveType,jdbcType=INTEGER},
+      trigger_type = #{triggerType,jdbcType=INTEGER},
+      trigger_coupon = #{triggerCoupon,jdbcType=VARCHAR},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      office_code = #{officeCode,jdbcType=VARCHAR},
+      guide_award_rule_id = #{guideAwardRuleId,jdbcType=VARCHAR},
+      win_type = #{winType,jdbcType=INTEGER},
+      win_num = #{winNum,jdbcType=INTEGER},
+      business_type = #{businessType,jdbcType=INTEGER},
+      shownum = #{shownum,jdbcType=INTEGER},
+      notify_user = #{notifyUser,jdbcType=VARCHAR},
+      external_url_type = #{externalUrlType,jdbcType=VARCHAR},
+      empty_stock_switch = #{emptyStockSwitch,jdbcType=INTEGER},
+      show_level = #{showLevel,jdbcType=INTEGER},
+      show_growth = #{showGrowth,jdbcType=INTEGER},
+      activity_type = #{activityType,jdbcType=INTEGER},
+      sync_member_miniprogram = #{syncMemberMiniprogram,jdbcType=INTEGER}
+    where activity_id = #{activityId,jdbcType=BIGINT}
+  </update>
+</mapper>

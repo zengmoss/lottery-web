@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama100.lotteryweb.mapper.BwGoodtipsMapper">
+  <resultMap id="BaseResultMap" type="com.mama100.lotteryweb.po.BwGoodtips">
+    <id column="tip_id" jdbcType="BIGINT" property="tipId" />
+    <result column="activity_id" jdbcType="BIGINT" property="activityId" />
+    <result column="big_tips" jdbcType="VARCHAR" property="bigTips" />
+    <result column="small_tips" jdbcType="VARCHAR" property="smallTips" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tip_id, activity_id, big_tips, small_tips, updated_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bw_goodTips
+    where tip_id = #{tipId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bw_goodTips
+    where tip_id = #{tipId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mama100.lotteryweb.po.BwGoodtips">
+    insert into bw_goodTips (tip_id, activity_id, big_tips, 
+      small_tips, updated_by)
+    values (#{tipId,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT}, #{bigTips,jdbcType=VARCHAR}, 
+      #{smallTips,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mama100.lotteryweb.po.BwGoodtips">
+    insert into bw_goodTips
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tipId != null">
+        tip_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="bigTips != null">
+        big_tips,
+      </if>
+      <if test="smallTips != null">
+        small_tips,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tipId != null">
+        #{tipId,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="bigTips != null">
+        #{bigTips,jdbcType=VARCHAR},
+      </if>
+      <if test="smallTips != null">
+        #{smallTips,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mama100.lotteryweb.po.BwGoodtips">
+    update bw_goodTips
+    <set>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="bigTips != null">
+        big_tips = #{bigTips,jdbcType=VARCHAR},
+      </if>
+      <if test="smallTips != null">
+        small_tips = #{smallTips,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tip_id = #{tipId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mama100.lotteryweb.po.BwGoodtips">
+    update bw_goodTips
+    set activity_id = #{activityId,jdbcType=BIGINT},
+      big_tips = #{bigTips,jdbcType=VARCHAR},
+      small_tips = #{smallTips,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR}
+    where tip_id = #{tipId,jdbcType=BIGINT}
+  </update>
+</mapper>
