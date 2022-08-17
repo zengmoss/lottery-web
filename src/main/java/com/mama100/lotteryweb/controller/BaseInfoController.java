@@ -1,5 +1,6 @@
 package com.mama100.lotteryweb.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageInfo;
 import com.mama100.lotteryweb.po.BwBaseinfo;
 import com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs;
@@ -55,10 +56,14 @@ public class BaseInfoController {
         List<BwBaseinfo> list = baseInfoService.list();
         return list;
     }
-    @ApiOperation("查找所有活动")
+    @ApiOperation("查找分页活动 pagehelper")
     @GetMapping("/selectPage")
     public PageInfo<BwBaseinfo> selectPage(PageReq req){
         return baseInfoService.pageList(req);
     }
-
+    @ApiOperation("查找分页活动 PaginationInnerInterceptor")
+    @GetMapping("/selectPage2")
+    public Page<BwBaseinfo> selectPage2(PageReq req){
+        return baseInfoService.pageList2(req);
+    }
 }

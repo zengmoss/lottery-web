@@ -1,5 +1,6 @@
 package com.mama100.lotteryweb.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mama100.lotteryweb.mapper.BwBaseinfoMapper;
@@ -48,6 +49,10 @@ public class BaseInfoService {
         PageHelper.startPage(req.getPageNum(),req.getPageSize());
         List<BwBaseinfo> infos =  baseinfoMapper.selectList(null);
         return new PageInfo<>(infos);
+    }
+    public Page<BwBaseinfo> pageList2(PageReq req){
+        Page<BwBaseinfo> p = new Page<>(req.getPageNum(),req.getPageSize());
+        return baseinfoMapper.selectPage(p,null);
     }
 
 
