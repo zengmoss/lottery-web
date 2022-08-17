@@ -9,7 +9,7 @@ server:
     threads:
       max: 400
       min-spare: 17
-mybatis:
+mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.mama100.lotteryweb.po
 management:

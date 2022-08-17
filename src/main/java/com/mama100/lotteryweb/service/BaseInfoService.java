@@ -1,12 +1,18 @@
 package com.mama100.lotteryweb.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mama100.lotteryweb.mapper.BwBaseinfoMapper;
+import com.mama100.lotteryweb.po.BwBaseinfo;
 import com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs;
+import com.mama100.lotteryweb.po.PageReq;
 import com.mama100.lotteryweb.util.CacheNameConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * *
@@ -30,11 +36,19 @@ public class BaseInfoService {
     @Transactional(rollbackFor = Exception.class)
     public int insert(BwBaseinfoWithBLOBs record){
         int r = baseinfoMapper.insert(record);
-        xx();
         return r;
     }
 
-    public void xx(){
-        throw new RuntimeException("保存不成功！");
+    public List<BwBaseinfo> list(){
+        List<BwBaseinfo> infos =  baseinfoMapper.selectList(null);
+        return infos;
     }
+    public PageInfo<BwBaseinfo> pageList(PageReq req){
+        //使用分页插件工具完成分页
+        PageHelper.startPage(req.getPageNum(),req.getPageSize());
+        List<BwBaseinfo> infos =  baseinfoMapper.selectList(null);
+        return new PageInfo<>(infos);
+    }
+
+
 }

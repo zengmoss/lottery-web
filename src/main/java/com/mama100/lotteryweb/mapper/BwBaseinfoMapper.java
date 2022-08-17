@@ -1,9 +1,10 @@
 package com.mama100.lotteryweb.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mama100.lotteryweb.po.BwBaseinfo;
 import com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs;
 
-public interface BwBaseinfoMapper {
+public interface BwBaseinfoMapper extends BaseMapper<BwBaseinfo> {
     int deleteByPrimaryKey(Long activityId);
 
     int insert(BwBaseinfoWithBLOBs record);

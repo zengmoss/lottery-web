@@ -1,6 +1,9 @@
 package com.mama100.lotteryweb.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.mama100.lotteryweb.po.BwBaseinfo;
 import com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs;
+import com.mama100.lotteryweb.po.PageReq;
 import com.mama100.lotteryweb.service.BaseInfoService;
 import com.mama100.lotteryweb.util.JacksonUtil;
 import io.swagger.annotations.Api;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -45,4 +49,16 @@ public class BaseInfoController {
     public int insert(@RequestBody BwBaseinfoWithBLOBs record){
         return baseInfoService.insert(record);
     }
+    @ApiOperation("查找所有活动")
+    @GetMapping("/selectAll")
+    public List<BwBaseinfo> selectAll(){
+        List<BwBaseinfo> list = baseInfoService.list();
+        return list;
+    }
+    @ApiOperation("查找所有活动")
+    @GetMapping("/selectPage")
+    public PageInfo<BwBaseinfo> selectPage(PageReq req){
+        return baseInfoService.pageList(req);
+    }
+
 }

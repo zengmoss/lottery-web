@@ -1,7 +1,10 @@
 package com.mama100.lotteryweb.po;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.util.Date;
 
+@TableName("bw_baseInfo")
 public class BwBaseinfo {
     private Long activityId;
 
