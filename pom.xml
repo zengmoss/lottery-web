@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 		<swagger2.version>2.9.2</swagger2.version>
 		<log4j2.version>2.16.0</log4j2.version>
+		<MyBatis-plus.version>3.5.2</MyBatis-plus.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -46,7 +47,22 @@
         <dependency>
 		  <groupId>com.baomidou</groupId>
 		  <artifactId>mybatis-plus-boot-starter</artifactId>
-		  <version>3.5.2</version>
+		  <version>${MyBatis-plus.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-generator</artifactId>
+			<version>${MyBatis-plus.version}</version>
+		</dependency><!--
+		<dependency>
+		  <groupId>com.github.jsqlparser</groupId>
+		  <artifactId>jsqlparser</artifactId>
+		  <version>4.4</version>
+		</dependency>-->
+		<dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.30</version>
 		</dependency>
 		<dependency>
             <groupId>org.mybatis.spring.boot</groupId>

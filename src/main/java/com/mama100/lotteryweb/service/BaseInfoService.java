@@ -5,7 +5,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mama100.lotteryweb.mapper.BwBaseinfoMapper;
 import com.mama100.lotteryweb.po.BwBaseinfo;
-import com.mama100.lotteryweb.po.BwBaseinfoWithBLOBs;
 import com.mama100.lotteryweb.po.PageReq;
 import com.mama100.lotteryweb.util.CacheNameConstant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +25,16 @@ public class BaseInfoService {
     private BwBaseinfoMapper baseinfoMapper;
 
     @Cacheable(CacheNameConstant.TWO_MINUTE)
-    public BwBaseinfoWithBLOBs selectByPrimaryKey(Long activityId){
-        return baseinfoMapper.selectByPrimaryKey(activityId);
+    public BwBaseinfo selectByPrimaryKey(Long activityId){
+        return baseinfoMapper.selectById(activityId);
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public int updateByPrimaryKey(BwBaseinfoWithBLOBs record){
-        return baseinfoMapper.updateByPrimaryKey(record);
+    public int updateByPrimaryKey(BwBaseinfo record){
+        return baseinfoMapper.updateById(record);
     }
     @Transactional(rollbackFor = Exception.class)
-    public int insert(BwBaseinfoWithBLOBs record){
+    public int insert(BwBaseinfo record){
         int r = baseinfoMapper.insert(record);
         return r;
     }
