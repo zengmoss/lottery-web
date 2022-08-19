@@ -39,11 +39,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
-        <!--<dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.2.1</version>
-        </dependency>-->
         <dependency>
 		  <groupId>com.baomidou</groupId>
 		  <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -53,12 +48,7 @@
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-generator</artifactId>
 			<version>${MyBatis-plus.version}</version>
-		</dependency><!--
-		<dependency>
-		  <groupId>com.github.jsqlparser</groupId>
-		  <artifactId>jsqlparser</artifactId>
-		  <version>4.4</version>
-		</dependency>-->
+		</dependency>
 		<dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
@@ -149,6 +139,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		<dependency>
+            <!-- spring integration -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-integration</artifactId>
+        </dependency>
+        <dependency>
+            <!-- spring integration与redis结合，实现redis分布式锁 -->
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-redis</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>
