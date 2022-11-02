@@ -1,10 +1,9 @@
 package com.mama100.lotteryweb.util;
 
-import com.baomidou.mybatisplus.core.enums.SqlLike;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.TemplateType;
-import com.baomidou.mybatisplus.generator.config.po.LikeTable;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.util.Collections;
@@ -17,7 +16,9 @@ import java.util.Collections;
 public class CodeGenerator {
     public static void main(String[] args) {
         String projectPath = System.getProperty("user.dir");
-        FastAutoGenerator.create("jdbc:mysql://10.50.115.114:16052/swisse?characterEncoding=utf-8", "swisse", "swisse")
+        FastAutoGenerator.create(new DataSourceConfig
+                .Builder( "jdbc:oracle:thin:@test-oracle.biostime.it:1521/mama100", "MAMA100_OWNER", "DFIcieAIO0Mg2M")
+                .schema("MAMA100_ODS"))
                 .globalConfig(builder -> {
                     builder.author("moss") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
@@ -31,10 +32,11 @@ public class CodeGenerator {
                     builder.disable(TemplateType.SERVICE,TemplateType.SERVICEIMPL,TemplateType.CONTROLLER);
                 })
                 .strategyConfig(builder -> {
-                    builder/*.addInclude("log_baseInfo")*/ // 设置需要生成的表名
+                    builder.enableSchema()
+                            .addInclude("TR_AWARD_BIOSTIME_DETAILED","TR_RETURN_BIOSTIME_DETAILED") // 设置需要生成的表名
                             /*.addTablePrefix("t_", "c_")*/// 设置过滤表前缀
-                    .likeTable(new LikeTable("bw_", SqlLike.RIGHT))
-                    .entityBuilder().enableLombok().build();
+                    //.likeTable(new LikeTable("problem_", SqlLike.RIGHT))
+                    .entityBuilder().disableSerialVersionUID().enableLombok().build();
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();
