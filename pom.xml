@@ -115,8 +115,13 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
-			<version>2.2.9.RELEASE</version>
+			<version>2.2.9.RELEASE</version><exclusions><exclusion><artifactId>feign-hystrix</artifactId><groupId>io.github.openfeign</groupId></exclusion></exclusions>
 		</dependency>
+		<dependency>
+			 <groupId>io.github.openfeign</groupId>
+			 <artifactId>feign-okhttp</artifactId>
+			 <version>10.12</version>
+		 </dependency>
 		<dependency>
 			<groupId>global.hh</groupId>
 			<artifactId>point-inout</artifactId>
@@ -149,6 +154,12 @@
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-redis</artifactId>
         </dependency>
+
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
