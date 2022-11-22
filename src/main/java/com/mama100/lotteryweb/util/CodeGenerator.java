@@ -17,7 +17,7 @@ import java.util.Collections;
 public class CodeGenerator {
     public static void main(String[] args) {
         String projectPath = System.getProperty("user.dir");
-        FastAutoGenerator.create("jdbc:mysql://10.50.115.114:16052/swisse?characterEncoding=utf-8", "swisse", "swisse")
+        FastAutoGenerator.create("jdbc:mysql://rm-wz970v070s428i18m.mysql.rds.aliyuncs.com:3306/lottery_intfc_db?characterEncoding=utf-8", "lottery_intfc", "gKvbRtMykhKoA8wz")
                 .globalConfig(builder -> {
                     builder.author("moss") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
@@ -28,12 +28,13 @@ public class CodeGenerator {
                             .pathInfo(Collections.singletonMap(OutputFile.xml, projectPath +"/src/main/resources/mapper")); // 设置mapperXml生成路径
                 })
                 .templateConfig(builder -> {
-                    builder.disable(TemplateType.SERVICE,TemplateType.SERVICEIMPL,TemplateType.CONTROLLER);
+                    builder.disable(TemplateType.SERVICEIMPL);
                 })
                 .strategyConfig(builder -> {
-                    builder/*.addInclude("log_baseInfo")*/ // 设置需要生成的表名
-                            /*.addTablePrefix("t_", "c_")*/// 设置过滤表前缀
-                    .likeTable(new LikeTable("bw_", SqlLike.RIGHT))
+                    builder
+                            /*.addInclude("cust_card_status_change") */// 设置需要生成的表名
+                            .addTablePrefix("li_")// 设置过滤表前缀
+                    .likeTable(new LikeTable("li_", SqlLike.RIGHT))
                     .entityBuilder().enableLombok().build();
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
